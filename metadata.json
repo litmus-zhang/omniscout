@@ -1,0 +1,9 @@
+{
+  "name": "OmniScout",
+  "description": "The Autonomous Multimodal Agent for Hyper-Local Service Verification and Quality Logistics, featuring deep visual auditing and generative simulations.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
