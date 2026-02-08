@@ -69,69 +69,6 @@ const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, children }) =>
           ))}
         </nav>
 
-        {hasKey === false || hasKey === null ? (
-          // <div className="min-h-screen bg-[#0a0a0b] flex flex-col items-center justify-center p-6 text-center">
-
-          <div className="p-6">
-            <div className="flex w-full max-w-lg flex-col gap-6">
-
-              <Item variant="outline">
-                <ItemMedia variant="icon">
-                   <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <Shield className="text-white w-5 h-5" />
-            </div>
-                </ItemMedia>
-                <ItemContent>
-                  <ItemTitle>Activate OmniScout Vision</ItemTitle>
-                  <ItemDescription>
-                    You need to connect an API key.
-                  </ItemDescription>
-                </ItemContent>
-                <ItemActions>
-                  <Button size="sm" variant="outline" onClick={handleSelectKey}
-                  >
-                    Connect
-                  </Button>
-                  {/* <APIKeyDialog title='Connect'/> */}
-                </ItemActions>
-              </Item>
-            </div>
-            {/* <div className="w-24 h-24 bg-blue-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-600/20 mb-8">
-              <ICONS.Shield className="w-12 h-12 text-white" />
-            </div>
-            <h1 className="text-4xl font-black mb-4 tracking-tighter uppercase">Activate OmniScout Vision</h1>
-            <p className="text-gray-400 max-w-md mb-12 leading-relaxed">
-              To enable High-Quality Visual Simulations and Deep Audits (Gemini 3 Pro), you must connect a professional API key from a paid GCP project.
-            </p>
-            <button
-              onClick={handleSelectKey}
-              className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl shadow-blue-600/30 transition-all active:scale-95"
-            >
-              CONNECT SECURE API KEY
-            </button>
-            <a
-              href="https://ai.google.dev/gemini-api/docs/billing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 text-xs text-gray-600 hover:text-gray-400 underline mono"
-            >
-              View Billing Documentation &rarr;
-            </a> */}
-          </div>
-        ) : (
-          <div className="p-6 border-t border-gray-800">
-            <div className="bg-gray-900/50 rounded-xl p-3 border border-gray-800">
-              <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Gemini 3 Pro Active
-              </div>
-              <div className="text-[10px] text-gray-600 mono">Node: L-Alpha-7</div>
-            </div>
-          </div>
-        )
-        }
-
-
       </aside>
 
       {/* Main Content */}
