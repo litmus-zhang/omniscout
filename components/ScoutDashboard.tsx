@@ -3,12 +3,26 @@ import React, { useState, useEffect } from 'react';
 import { geminiService } from '../services/geminiService';
 import { ICONS, COLORS } from '../constants';
 import * as d3 from 'd3';
+import { Search } from 'lucide-react';
 
 const ScoutDashboard: React.FC = () => {
   const [query, setQuery] = useState('');
   const [resultData, setResultData] = useState<{ text: string, links: any[] } | null>(null);
   const [loading, setLoading] = useState(false);
   const [thoughts, setThoughts] = useState<string[]>([]);
+  const [latitude, setLatitude] = useState(37.7749);
+  const [longitude, setLongitude] = useState(-122.4194);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+      }, () => {
+        console.log("Could not get location. Using default location.");
+      });
+    }
+  }, []);
 
   const handleSearch = async () => {
     if (!query) return;
@@ -21,7 +35,7 @@ const ScoutDashboard: React.FC = () => {
     ]);
 
     try {
-      const data = await geminiService.searchProviders(query, 37.7749, -122.4194);
+      const data = await geminiService.searchProviders(query, latitude, longitude);
       setResultData(data);
     } catch (error) {
       console.error(error);
@@ -84,7 +98,7 @@ const ScoutDashboard: React.FC = () => {
            
            <div className="flex gap-3">
              <div className="flex-1 relative">
-                <ICONS.Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
                 <input 
                   type="text" 
                   value={query}

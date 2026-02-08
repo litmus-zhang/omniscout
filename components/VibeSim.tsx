@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { geminiService } from '../services/geminiService';
 import { ICONS } from '../constants';
+import { Button } from './ui/button';
 
 const VibeSim: React.FC = () => {
   const [baseImage, setBaseImage] = useState<string | null>(null);
@@ -67,13 +68,13 @@ const VibeSim: React.FC = () => {
                    </select>
                 </div>
 
-                <button 
+                <Button 
                   disabled={loading || !baseImage}
                   onClick={generateVibe}
                   className="w-full py-5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl font-bold shadow-xl shadow-blue-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
                 >
                   {loading ? 'Projecting Future Reality...' : 'Generate Simulation Loop'}
-                </button>
+                </Button>
              </div>
           </div>
         </div>

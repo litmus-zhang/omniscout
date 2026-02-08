@@ -4,7 +4,8 @@ import { AppTab } from '../types';
 import { ICONS, COLORS } from '../constants';
 import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from './ui/item';
 import { Button } from './ui/button';
-import { ShieldAlertIcon } from 'lucide-react';
+import { Shield, ShieldAlertIcon } from 'lucide-react';
+import { APIKeyDialog } from './key-dialog';
 
 interface LayoutProps {
   activeTab: AppTab;
@@ -45,7 +46,7 @@ const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, children }) =>
         <div className="p-6">
           <h1 className="text-xl font-bold tracking-tighter flex items-center gap-2">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <ICONS.Shield className="text-white w-5 h-5" />
+              <Shield className="text-white w-5 h-5" />
             </div>
             OMNISCOUT <span className="text-blue-500">AI</span>
           </h1>
@@ -58,8 +59,8 @@ const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, children }) =>
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${activeTab === item.id
-                  ? 'bg-blue-600/10 text-blue-400 border border-blue-600/20'
-                  : 'text-gray-400 hover:bg-gray-800'
+                ? 'bg-blue-600/10 text-blue-400 border border-blue-600/20'
+                : 'text-gray-400 hover:bg-gray-800'
                 }`}
             >
               <item.icon className="w-5 h-5" />
@@ -70,28 +71,31 @@ const Layout: React.FC<LayoutProps> = ({ activeTab, setActiveTab, children }) =>
 
         {hasKey === false || hasKey === null ? (
           // <div className="min-h-screen bg-[#0a0a0b] flex flex-col items-center justify-center p-6 text-center">
-        
-          <div className="p-6">
-                <div className="flex w-full max-w-lg flex-col gap-6">
 
-             <Item variant="outline">
-        <ItemMedia variant="icon">
-          <ShieldAlertIcon className="w-12 h-12 text-white"/>
-        </ItemMedia>
-        <ItemContent>
-          <ItemTitle>Activate OmniScout Vision</ItemTitle>
-          <ItemDescription>
-            You need to connect a professional API key from a paid GCP project.
-          </ItemDescription>
-        </ItemContent>
-        <ItemActions>
-          <Button size="sm" variant="outline"               onClick={handleSelectKey}
->
-                          Connect
-          </Button>
-        </ItemActions>
-      </Item>
-      </div>
+          <div className="p-6">
+            <div className="flex w-full max-w-lg flex-col gap-6">
+
+              <Item variant="outline">
+                <ItemMedia variant="icon">
+                   <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <Shield className="text-white w-5 h-5" />
+            </div>
+                </ItemMedia>
+                <ItemContent>
+                  <ItemTitle>Activate OmniScout Vision</ItemTitle>
+                  <ItemDescription>
+                    You need to connect an API key.
+                  </ItemDescription>
+                </ItemContent>
+                <ItemActions>
+                  <Button size="sm" variant="outline" onClick={handleSelectKey}
+                  >
+                    Connect
+                  </Button>
+                  {/* <APIKeyDialog title='Connect'/> */}
+                </ItemActions>
+              </Item>
+            </div>
             {/* <div className="w-24 h-24 bg-blue-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-600/20 mb-8">
               <ICONS.Shield className="w-12 h-12 text-white" />
             </div>
